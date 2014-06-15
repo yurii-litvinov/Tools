@@ -10,7 +10,7 @@ import re
 year = 2013
 
 class Student(object):
-	__template = "  <li><b>  </b>\n"  \
+	__template = "  <li><b>  </b>  (научный руководитель:  )\n"  \
 		"    <br />\n" \
 		"%s" \
 		"  </li>\n\n"
