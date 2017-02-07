@@ -136,14 +136,6 @@ def addValueToDictionary(d, key, value):
 		d[key] = value
 
 
-def getValueFromDictionary(d, key):
-	value = ""
-	if key in d:
-		value = d[key]
-
-	return value
-
-
 def initDictionaries(csvFile):
 	fullNames = {}
 	themes = {}
@@ -171,12 +163,14 @@ for file in files:
 	name, documentType = fileInfo(file)
 	student = find(lambda student: student.name == name, students)
 	if student == None:
-		fullName = getValueFromDictionary(fullNames, name)
-		theme = getValueFromDictionary(themes, name)
+		fullName = fullNames.get(name, "")
+		theme = themes.get(name, "")
 
 		student = Student(name, fullName, theme)
 		students.append(student)
 	student.updateDocument(file, documentType)
+
+students.sort(key=lambda x:x.fullName)
 
 output = open("output.txt", "w")
 i = 1
